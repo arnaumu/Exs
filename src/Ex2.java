@@ -9,15 +9,16 @@ import java.util.regex.Pattern;
 public class Ex2 {
 
     public static String StringChallenge(String str) {
-        //hour = {"hour1","hour2"}
-        //hours = {(hour1:"hour","mins","am/pm"),(hour2:"hour","mins","am/pm")}          10:59pm -> 12:58pm
+        /*
+        hour = {"hour1","hour2"}
+        hours = {(hour1:"hour","mins","am/pm"),(hour2:"hour","mins","am/pm")}          10:59pm -> 12:58pm
+        */
         String[] hour = str.split("-");
         String[][] hours = new String[2][3];
-
         for (int i = 0; i < hour.length; i++) {
             if (hour[i].length() < 7) {
                 hours[i][0] = hour[i].substring(0, 1);
-                hours[i][1] = hour[i].substring(2, 3);
+                hours[i][1] = hour[i].substring(2, 4);
                 hours[i][2] = hour[i].substring(4, 6);
             } else {
                 hours[i][0] = hour[i].substring(0, 2);
@@ -28,12 +29,11 @@ public class Ex2 {
         System.out.println("Hora 1--->Hora: " + hours[0][0] + " Minutos: " + hours[0][1] + " Time: " + hours[0][2]);
         System.out.println("Hora 2--->Hora: " + hours[1][0] + " Minutos: " + hours[1][1] + " Time: " + hours[1][2]);
 
-
         return str;
     }
 
     public static Boolean CheckString(String str) {
-        Pattern p = Pattern.compile("^([0-9]|1[0-9]|2[0-3]):[0-5][0-9](pm|am)-([0-9]|1[0-9]|2[0-3]):[0-5][0-9](pm|am)$");
+        Pattern p = Pattern.compile("^([0-9]|1[0-2]):[0-5][0-9](pm|am)-([0-9]|1[0-2]):[0-5][0-9](pm|am)$");
         Matcher m = p.matcher(str);
 
         if (!str.isEmpty()) {
